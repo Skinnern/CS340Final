@@ -14,21 +14,24 @@
   <a href="About.php">About</a>
 </div>
 
-<!-- Select dropdown -->
-<body>
-<select name "search for" id="search for">
-<option value = "0" selected = "selected">What to search for</option>
-<option value = "Recipe" >Recipes</option>
-<option value = "User" >Users</option>
-<option value = "Ingredient" >Ingredients</option>
-</select>
-<!-- end dropdown -->
+<div>
+  <form action="SearchResults.php">
+    <label for="lname">Search for</label>
+    <input type="text" id="lname" name="lastname" placeholder="Item to search for...">
 
-<!-- Begin Text Entry -->
-<textarea rows="1" cols="50">
-Water
-</textarea>
-<!-- end text entry -->
+    <label for="country">Under</label>
+	<select name "search for" id="search for">
+	<option value = "0" selected = "selected">Recipe</option>
+	<option value = "Recipe" >Recipes</option>
+	<option value = "User" >Users</option>
+	<option value = "Ingredient" >Ingredients</option>
+	</select>
+    
+
+    
+    <input type="submit" value="Submit">
+  </form>
+</div>
 
 
 <!-- end Style-->
