@@ -21,9 +21,23 @@
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
-	
+	$Searchitem = mysqli_real_escape_string($conn, $_POST['Searchitem']);
+	$Locationof = $_POST['Locationof'];
+
+	//$Location = mysqli_real_escape_string($conn, $_POST['Location']);
 	//query to execute
-	$query = "select U.USERNAME, r.RECIPE_NAME, r.RECIPE_COST from RECIPE r, USER U where r.USER_ID = U.USER_ID LIMIT 0,10";
+	echo $Searchitem;
+	echo $Locationof;
+	if ($Locationof == 'User'){
+	$query = "select Username from USER where Username like '%$Searchitem%' LIMIT 0,20";
+	}
+	if ($Locationof == 'User'){
+	$query = "select Recipe_name from RECIPE where Recipe_name like '%$Searchitem%' LIMIT 0,20";	
+	}
+	if ($Locationof == 'Ingredient'){
+	$query = "select Ingredient_name from Ingredient where Ingredient_name = '%$Searchitem%' LIMIT 0,20";	
+	}
+	
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
@@ -31,7 +45,7 @@
 	
 	//number of fields
 	$fields_num = mysqli_num_fields($result);
-	echo "<h1>Popular Recipes: $table </h1>";
+	echo "<h1>Search Results: $table </h1>";
 	echo "<table id='t01' border='1'><tr>";
 	
 	//table headers

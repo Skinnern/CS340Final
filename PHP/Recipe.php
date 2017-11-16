@@ -34,7 +34,7 @@
 	//table headers
 	for($i=0; $i<$fields_num; $i++) {	
 		$field = mysqli_fetch_field($result);	
-		echo "<td><b>$field->name</b></td>";
+		echo "<th><b>$field->name</b></th>";
 	}
 	echo "</tr>\n";
 	while($row = mysqli_fetch_row($result)) {	

@@ -18,7 +18,7 @@
 <h2> Add new User</h2>
 <form action="insertUser.php" method="post">
     <p>
-        <label for="username">username:</label>
+        <label for="username">Username:</label>
         <input type="text" name="username" id="username"  placeholder="Username...">
     </p>
 	   <p>
@@ -30,7 +30,7 @@
         <input type="text" name="password" id="password"  placeholder="Password...">
     </p>
     <input type="submit" value="Submit">
-</div>
 </form>
+</div>
 </body>
 </html>
