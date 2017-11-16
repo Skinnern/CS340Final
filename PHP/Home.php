@@ -15,6 +15,7 @@
   <a href="About.php">About</a>
 </div>
 <!-- end Style-->
+<div>
 <?php
 	include 'connectvarsEECS.php'; 
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -53,6 +54,7 @@
 	mysqli_free_result($result);
 	mysqli_close($conn);
 ?>
+</div>
 <? 
     include("footer.php");
 ?>
