@@ -15,6 +15,7 @@
   <a href="About.php">About</a>
 </div>
 <!-- end Style-->
+<div>
 <?php
 	include 'connectvarsEECS.php'; 
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -35,9 +36,9 @@
 	echo "<table id='t01' border='1'><tr>";
 	
 	//table headers
-	echo "<td><b>User</b></td>";	
-	echo "<td><b>Recipe Name</b></td>";
-	echo "<td><b>Total Cost</b></td>";
+	echo "<th><b>User</b></th>";	
+	echo "<th><b>Recipe Name</b></th>";
+	echo "<th><b>Total Cost</b></th>";
 	echo "</tr>\n";
 	
 	//table content
@@ -53,6 +54,7 @@
 	mysqli_free_result($result);
 	mysqli_close($conn);
 ?>
+</div>
 <? 
     include("footer.php");
 ?>

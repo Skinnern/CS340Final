@@ -15,17 +15,21 @@
 </div>
 
 <div>
-  <form action="SearchResults.php">
-    <label for="lname">Search for</label>
-    <input type="text" id="lname" name="lastname" placeholder="Item to search for...">
+  <form action="SearchResults.php" method="post">
+    <label for="Searchitem">Search for</label>
+    <input type="text" id="Searchitem" name="Searchitem" placeholder="Item to search for...">
 
-    <label for="country">Under</label>
-	<select name "search for" id="search for">
-	<option value = "0" selected = "selected">Recipe</option>
-	<option value = "Recipe" >Recipes</option>
-	<option value = "User" >Users</option>
-	<option value = "Ingredient" >Ingredients</option>
+    <label for="Locationof">Under</label>
+	<select name "Locationof" id="Locationof">
+		<option value = "0" selected = "selected">Select...</option>
+		<option value = "1" >Recipes</option>
+		<option value = "2" >Users</option>
+		<option value = "3" >Ingredients</option>
 	</select>
+	<? 
+    $Locationof = $_POST['Locationof'];
+	echo $Locationof;
+	?>
     
 
     
