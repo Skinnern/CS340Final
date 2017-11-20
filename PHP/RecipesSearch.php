@@ -8,8 +8,8 @@
 <?php include 'index.css'; ?>
 </style>
 <div class="topnav">
-  <a class="active" href="Home.php">Home</a>
-  <a href="RecipesSearch.php">Recipe Search</a>
+  <a href="Home.php">Home</a>
+  <a  class="active" href="RecipesSearch.php">Recipe Search</a>
   <a href="Account.php">Account</a>
   <a href="About.php">About</a>
 </div>
@@ -20,7 +20,7 @@
     <input type="text" id="Searchitem" name="Searchitem" placeholder="Item to search for...">
 
     <label for="Locationof">Under</label>
-	<select name "Locationof" id="Locationof">
+	<select name="Locationof" id="Locationof">
 		<option value = "0" selected = "selected">Select...</option>
 		<option value = "1" >Recipes</option>
 		<option value = "2" >Users</option>
