@@ -10,7 +10,7 @@
 <?php include 'index.css'; ?>
 </style>
 <div class="topnav">
-  <a class="active" href="Home.php">Home</a>
+  <a href="Home.php">Home</a>
   <a class="active" href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
   <a href="AddIngredient.php">Add Ingredient</a>

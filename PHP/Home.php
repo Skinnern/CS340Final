@@ -1,6 +1,5 @@
-<? 
-    session_start();
-	//$_SESSION['login_user'] == 'Nick';
+<?php session_start();
+	$nick = $_SESSION['login_user'];
 	//include('session.php');
 	
  ?>
@@ -28,9 +27,6 @@
 <!-- end Style-->
 <div>
 <?php
-if(isset($_SESSION['login_user'])){
-echo 'Welcome, '.$_SESSION['login_user'];
-}
 	include 'connectvarsEECS.php'; 
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
@@ -54,7 +50,7 @@ echo 'Welcome, '.$_SESSION['login_user'];
 	echo "<th><b>Recipe Name</b></th>";
 	echo "<th><b>Total Cost</b></th>";
 	echo "</tr>\n";
-	
+
 	//table content
 	while($row = mysqli_fetch_row($result)) {	
 		echo "<tr>";	
@@ -69,6 +65,7 @@ echo 'Welcome, '.$_SESSION['login_user'];
 ?>
 </div>
 <? 
+	
     include("footer.php");
 ?>
 </html>

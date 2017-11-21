@@ -1,3 +1,10 @@
+<? session_start(); ?>
+<!DOCTYPE html>
+<!-- Add Student to Table User -->
+<html>
+<? 
+    include("header.php");
+?>
 <style>
 <?php include 'index.css'; ?>
 </style>
@@ -11,4 +18,20 @@
   <a href="Account.php">Account</a>
   <a href="About.php">About</a>
 </div>
-//addingredient
+
+<div>
+<h2> Add new Ingredient</h2>
+<form action="insertIngredient.php" method="post">
+    <p>
+        <label for="IName">Ingredient Name:</label>
+        <input type="text" name="IName" id="IName"  placeholder="Ingredient Name...">
+    </p>
+	<p>
+        <label for="cost">Cost:</label>
+        <input type="text" name="cost" id="cost"  placeholder="Ingredient Cost...">
+    </p>
+    <input type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>

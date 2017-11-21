@@ -1,6 +1,4 @@
-<? 
- // Starting Session
-	session_start();
+<?php session_start();
 	//$_SESSION['login_user']='Nick';
 	$nick = 'Nick';
 ?>
@@ -60,5 +58,6 @@ include 'connectvarsEECS.php';
 	mysql_close($conn); // Closing Connection
 	}
 }
+echo session_id();
 ?>
 </div>
