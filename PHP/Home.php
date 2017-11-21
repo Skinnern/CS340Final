@@ -1,7 +1,8 @@
 <? 
     session_start();
-	$_SESSION['login_user'] == 'Nick';
+	//$_SESSION['login_user'] == 'Nick';
 	//include('session.php');
+	
  ?>
 
 <!DOCTYPE html>
@@ -27,9 +28,9 @@
 <!-- end Style-->
 <div>
 <?php
-var_dump($_SESSION['login_user']);
-print_r($_SESSION);
-echo("{$_SESSION['login_user']}"."<br />");
+if(isset($_SESSION['login_user'])){
+echo 'Welcome, '.$_SESSION['login_user'];
+}
 	include 'connectvarsEECS.php'; 
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {

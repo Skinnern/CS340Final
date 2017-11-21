@@ -1,12 +1,15 @@
 <? 
+ // Starting Session
 	session_start();
-	
+	//$_SESSION['login_user']='Nick';
+	$nick = 'Nick';
 ?>
 <!DOCTYPE html>
 <!-- Recipe-->
 <html>
 <? 
 	session_start();
+	//session_start();
     include("header.php");
 ?>
 <!-- Style -->
@@ -25,7 +28,7 @@
 </div>
 <div>
 <?php
-session_start(); // Starting Session
+
 $error=''; // Variable To Store Error Message
 if (isset($_POST['submit'])) {
 if (empty($_POST['username']) || empty($_POST['password'])) {
@@ -50,15 +53,14 @@ include 'connectvarsEECS.php';
 	$row_count = $result->num_rows;
 //set session if logged in
 	if ($row_count > 0) {
-		$_SESSION['login_user']=$username; // Initializing Session
-		echo "logged in as:";
-		echo("{$_SESSION['login_user']}"."<br />");
+		$loginname = $username;
+		$_SESSION['login_user']=$loginname; // Initializing Session
+		echo "logged in as: ".$_SESSION['login_user'];
 	} else {
 		$error = "Username or Password is invalid";
 	}
 	mysql_close($conn); // Closing Connection
 	}
 }
-
 ?>
 </div>

@@ -3,9 +3,9 @@
 </style>
 <? session_start(); ?>
 <div class="topnav">
-  <a class="active" href="Home.php">Home</a>
+  <a href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
-  <a href="AddRecipe.php">Add Recipe</a>
+  <a class="active" href="AddRecipe.php">Add Recipe</a>
   <a href="AddIngredient.php">Add Ingredient</a>
   <a href="LoginPage.php">Login</a>
   <a href="logout.php">Logout</a>

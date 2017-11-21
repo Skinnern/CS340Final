@@ -1,5 +1,4 @@
-<? session_start(); 
-if(isset($_SESSION["login_user"]) && $_SESSION["login_user"] != "") return $_SESSION["login_user"];?>
+<? session_start(); ?>
 <!DOCTYPE html>
 <!-- Recipe-->
 <html>
@@ -12,13 +11,13 @@ if(isset($_SESSION["login_user"]) && $_SESSION["login_user"] != "") return $_SES
 <?php include 'index.css'; ?>
 </style>
 <div class="topnav">
-  <a class="active" href="Home.php">Home</a>
+  <a href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
   <a href="AddIngredient.php">Add Ingredient</a>
-  <a href="LoginPage.php">Login</a>
+  <a class="active" href="LoginPage.php">Login</a>
   <a href="logout.php">Logout</a>
-  <a class="active" href="Account.php">Account</a>
+  <a href="Account.php">Account</a>
   <a href="About.php">About</a>
 </div>
 <?php
@@ -34,7 +33,7 @@ header("location: Home.php");
 </head>
 <body>
 <div>
-	<h1>PHP Login Session Example</h1>
+	<h1>Login </h1>
 	<div id="LoginUser">
 		<h2>Login Form</h2>
 		<form action="LoginUser.php" method="post">
