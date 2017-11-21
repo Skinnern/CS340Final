@@ -7,11 +7,12 @@ select U.USERNAME, r.RECIPE_NAME, r.RECIPE_COST from RECIPE r, USER U where r.US
 
 --Check if user already exists
 --written for my PHP files already, but this is what it looks like
+--use name Nick for easy test
 select username from Users where username = '$username'
 
 --View other recipes user has written
---this could be used on the user profile, but i have not yet implemented the page
-select * from USER U, RECIPE R WHERE U.USER_ID = R.USER_ID and U.USERNAME = 'Nick'
+--seeded right now, but 
+select S.STEP_DESC, I.INGREDIENT_NAME, S.INGREDIENT_AMOUNT from RECIPE R, STEP S, INGREDIENT I where R.RECIPE_ID=S.RECIPE_ID and S.INGREDIENT_ID = I.INGREDIENT_ID and R.RECIPE_NAME like '%burger%';
 
 
 --*************************************
@@ -43,6 +44,7 @@ UPDATE `INGREDIENT` SET `INGREDIENT_COST` = '0.25' WHERE `INGREDIENT`.`INGREDIEN
 -- Triggers `RECIPE`
 --
 --I need to fix these up, I had something quite similar that worked, but now I dont think these are quite calculating correctly
+--Trigger to update recipes upon inserting new recipe
 DELIMITER $$
 CREATE TRIGGER `Update_Cost` AFTER INSERT ON `RECIPE` FOR EACH ROW update RECIPE e
 set e.RECIPE_COST = 
@@ -51,6 +53,7 @@ $$
 DELIMITER ;
 
 --update cost procedure
+--will be a procedure to update recipies that are getting their ingredients updated
 DELIMITER $$
 CREATE DEFINER=`cs340_skinnern`@`%` PROCEDURE `Update_Recipe_Costs`()
     NO SQL
