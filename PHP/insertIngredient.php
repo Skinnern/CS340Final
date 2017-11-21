@@ -21,7 +21,7 @@
 </div>
 
 <div>
-<h2>Add User</h2>
+<h2>Add Ingredient</h2>
 <?php
 // change the value of $dbuser and $dbpass to your username and password
 	include 'connectvarsEECS.php'; 
