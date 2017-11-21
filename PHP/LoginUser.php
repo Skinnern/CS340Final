@@ -8,8 +8,6 @@
 <!-- Recipe-->
 <html>
 <? 
-	session_start();
-	//session_start();
     include("header.php");
 ?>
 <!-- Style -->
