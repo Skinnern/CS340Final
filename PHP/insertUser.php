@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<? session_start(); ?>
+<!DOCTYPE html>
 <!-- new account -->
 <html>
 <? 
@@ -11,6 +12,10 @@
 <div class="topnav">
   <a class="active" href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
+  <a href="AddRecipe.php">Add Recipe</a>
+  <a href="AddIngredient.php">Add Ingredient</a>
+  <a href="LoginPage.php">Login</a>
+  <a href="logout.php">Logout</a>
   <a class="active" href="Account.php">Account</a>
   <a href="About.php">About</a>
 </div>

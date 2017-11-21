@@ -1,3 +1,9 @@
+<? 
+    session_start();
+	$_SESSION['login_user'] == 'Nick';
+	//include('session.php');
+ ?>
+
 <!DOCTYPE html>
 <!-- Recipe-->
 <html>
@@ -11,12 +17,19 @@
 <div class="topnav">
   <a class="active" href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
+  <a href="AddRecipe.php">Add Recipe</a>
+  <a href="AddIngredient.php">Add Ingredient</a>
+  <a href="LoginPage.php">Login</a>
+  <a href="logout.php">Logout</a>
   <a href="Account.php">Account</a>
   <a href="About.php">About</a>
 </div>
 <!-- end Style-->
 <div>
 <?php
+var_dump($_SESSION['login_user']);
+print_r($_SESSION);
+echo("{$_SESSION['login_user']}"."<br />");
 	include 'connectvarsEECS.php'; 
 	$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if (!$conn) {
@@ -45,7 +58,6 @@
 	while($row = mysqli_fetch_row($result)) {	
 		echo "<tr>";	
 		// $row is array... foreach( .. ) puts every element
-		// of $row to $cell variable	
 		foreach($row as $cell)		
 			echo "<td>$cell</td>";	
 		echo "</tr>\n";
