@@ -80,12 +80,27 @@
 			echo "<td>$cell</td>";	
 		echo "</tr>\n";
 	}
-	
 
 	mysqli_free_result($result);
 	mysqli_close($conn);
 ?>
 </div>
+<div>
+	<?php if(isset($_SESSION['login_user'])){ ?>
+
+		<form action="AddComment.php" method="post">
+			<label for="commenttext">Leave a Comment</label>
+			<p>
+			</p>
+			<input type="text" id="commenttext" name="commenttext" placeholder="Type in comment here...">
+			<input type="submit" value="Submit">
+		</form>
+	<?php }?>
+
+</div>
+
+
+
 <? 
     include("footer.php");
 ?>
