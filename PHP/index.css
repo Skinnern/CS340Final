@@ -5,6 +5,10 @@ body {margin:0;}
   background-color: #333;
 }
 
+span.tab{
+    padding: 0 80px; /* Or desired space*/
+}
+
 .topnav a {
   float: left;
   display: block;
