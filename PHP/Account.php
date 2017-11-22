@@ -25,14 +25,20 @@
 <form action="insertUser.php" method="post">
     <p>
         <label for="username">Username:</label>
+		<p>
+			</p>
         <input type="text" name="username" id="username"  placeholder="Username...">
     </p>
 	   <p>
         <label for="email">Email:</label>
+		<p>
+			</p>
         <input type="text" name="email" id="email"  placeholder="Email...">
     </p>
 	    <p>
         <label for="password">Password:</label>
+		<p>
+			</p>
         <input type="text" name="password" id="password"  placeholder="Password...">
     </p>
     <input type="submit" value="Submit">

@@ -24,10 +24,14 @@
 <form action="insertIngredient.php" method="post">
     <p>
         <label for="IName">Ingredient Name:</label>
+		<p>
+			</p>
         <input type="text" name="IName" id="IName"  placeholder="Ingredient Name...">
     </p>
 	<p>
         <label for="cost">Cost:</label>
+		<p>
+			</p>
         <input type="text" name="cost" id="cost"  placeholder="Ingredient Cost...">
     </p>
     <input type="submit" value="Submit">

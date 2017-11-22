@@ -22,6 +22,8 @@
 <div>
   <form action="BuildRecipe.php" method="post">
     <label for="Stepnum">How Many Steps will Be Needed</label>
+	<p>
+	</p>
 	<select name="Stepnum" id="Stepnum">
 		<option value = "0" selected = "selected">Number of Steps...</option>
 		<option value = "1" >1 Step</option>

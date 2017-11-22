@@ -37,8 +37,14 @@ header("location: Home.php");
 		<h2>Login Form</h2>
 		<form action="LoginUser.php" method="post">
 			<label>UserName :</label>
+			<p>
+			</p>
 			<input id="name" name="username" placeholder="username" type="text">
+			<p>
+			</p>
 			<label>Password :</label>
+			<p>
+			</p>
 			<input id="password" name="password" placeholder="**********" type="password">
 			<input name="submit" type="submit" value="LoginUser">
 			<span><?php echo $error; ?></span>

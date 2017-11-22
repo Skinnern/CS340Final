@@ -22,9 +22,15 @@
 <div>
   <form action="SearchResults.php" method="post">
     <label for="Searchitem">Search for</label>
+	<p>
+	</p>
     <input type="text" id="Searchitem" name="Searchitem" placeholder="Item to search for...">
-
+	<p>
+	</p>
+	<br />
     <label for="Locationof">Under</label>
+	<p>
+	</p>
 	<select name="Locationof" id="Locationof">
 		<option value = "0" selected = "selected">Select...</option>
 		<option value = "1" >Recipes</option>
