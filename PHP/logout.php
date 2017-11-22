@@ -21,9 +21,7 @@
 </div>
 <!-- end Style-->
 <div>
-<?
-session_start();
-session_unset();
+<?php
 session_destroy();
 
 echo "logged out";
@@ -31,5 +29,6 @@ echo "logged out";
 </div>
 <? 
     include("footer.php");
+	session_destroy();
 ?>
 </html>
