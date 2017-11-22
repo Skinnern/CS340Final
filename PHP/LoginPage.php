@@ -3,7 +3,6 @@
 <!-- Recipe-->
 <html>
 <? 
-	session_start();
     include("header.php");
 ?>
 <!-- Style -->
