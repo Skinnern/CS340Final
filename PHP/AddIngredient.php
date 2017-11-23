@@ -37,5 +37,54 @@
     <input type="submit" value="Submit">
 </form>
 </div>
+<br />
+<div>
+<h2>OR</h2>
+</div>
+<br />
+<div>
+<?php
+include 'connectvarsEECS.php'; 
+		$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+		if (!$conn) {
+			die('Could not connect: ' . mysql_error());
+		}
+		$query = "select Ingredient_name from INGREDIENT";
+		$result = mysqli_query($conn, $query);
+		if (!$result) {
+			die("Query to show fields from table failed");
+		}
+?>
+<h2> Update Existing Ingredient</h2>
+<form action="updateingredient.php" method="post">
+    <p>
+        <label for="INameU">Ingredient Name:</label>
+		<p>
+			</p>
+        <select name="INameU" id="INameU">
+				<option value = "0" selected = "selected">Select...</option>
+				<?php
+				while($row = mysqli_fetch_row($result)) {	
+					
+				// $row is array... foreach( .. ) puts every element
+				foreach($row as $cell)
+				echo "<option>";				
+				echo "$cell";	
+				echo "</option>\n";
+				}
+				?>
+			</select>
+    </p>
+	<p>
+        <label for="newcost"> New Cost:</label>
+		<p>
+			</p>
+        <input type="text" name="newcost" id="newcost"  placeholder="Ingredient Cost...">
+    </p>
+    <input type="submit" value="Submit">
+</form>
+</div>
+
+
 </body>
 </html>
