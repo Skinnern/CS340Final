@@ -28,7 +28,8 @@
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
-	$query = "select S.STEP_DESC, I.INGREDIENT_NAME, S.INGREDIENT_AMOUNT from RECIPE R, STEP S, INGREDIENT I where R.RECIPE_ID=S.RECIPE_ID and S.INGREDIENT_ID = I.INGREDIENT_ID and R.RECIPE_NAME like '%burger%';";
+	$searchitem = $_GET["name"];
+	$query = "select S.STEP_DESC, I.INGREDIENT_NAME, S.INGREDIENT_AMOUNT from RECIPE R, STEP S, INGREDIENT I where R.RECIPE_ID=S.RECIPE_ID and S.INGREDIENT_ID = I.INGREDIENT_ID and R.RECIPE_NAME like '$searchitem';";
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
@@ -55,7 +56,7 @@
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
-	$query = "Select U.USERNAME, C.COMMENT from COMMENT C, RECIPE R, USER U where C.RECIPE_ID = R.RECIPE_ID and C.USER_ID = U.USER_ID and R.RECIPE_NAME like '%burger%';";
+	$query = "Select U.USERNAME, C.COMMENT from COMMENT C, RECIPE R, USER U where C.RECIPE_ID = R.RECIPE_ID and C.USER_ID = U.USER_ID and R.RECIPE_NAME like '$searchitem';";
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");

@@ -72,6 +72,7 @@
 	//echo "</tr>\n";
 	
 	//table content
+	/*
 	while($row = mysqli_fetch_row($result)) {	
 		echo "<tr>";	
 		// $row is array... foreach( .. ) puts every element
@@ -80,6 +81,81 @@
 			echo "<td>$cell</td>";	
 		echo "</tr>\n";
 	}
+	*/
+	//wowowowowowowowo
+	
+	
+	if ($Locationof == '1'){
+	//begin
+	while($row = mysqli_fetch_row($result)) {		
+		echo "<tr>";	
+		// $row is array... foreach( .. ) puts every element
+		// of $row to $cell variable	
+		foreach($row as $cell)		
+			?>
+			<td><a href="Recipe.php?name=<?php echo $cell; ?>"><?php echo $cell; ?></a></td>
+			<?php
+		echo "</tr>\n";
+	}
+	//end
+	}	
+	if ($Locationof == '2'){
+	while($row = mysqli_fetch_row($result)) {	
+		echo "<tr>";	
+		// $row is array... foreach( .. ) puts every element
+		// of $row to $cell variable	
+		foreach($row as $cell)		
+			echo "<td>$cell</td>";	
+		echo "</tr>\n";
+	}
+	}	
+	if ($Locationof == '3'){
+	while($row = mysqli_fetch_row($result)) {	
+		echo "<tr>";	
+		// $row is array... foreach( .. ) puts every element
+		// of $row to $cell variable	
+		$i=1;
+		foreach($row as $cell)
+			if($i == 2 || $i == 4|| $i == 6|| $i == 8|| $i == 10|| $i == 12|| $i == 14|| $i == 16|| $i == 18|| $i == 20|| $i == 22| $i == 24|| $i == 26|| $i == 28|| $i == 30 || $i == 32|| $i == 34|| $i == 36|| $i == 38|| $i == 40|| $i == 42){
+				//echo "<td>$cell</td>";
+				?>
+				<td><a href="Recipe.php?name=<?php echo $cell; ?>"><?php echo $cell; ?></a></td>
+				<?php
+				$i++;				
+			}else{
+				echo "<td>$cell</td>";
+				$i++;
+			}
+		echo "</tr>\n";
+	}
+		//end massive if
+			//echo "<td>$cell</td>";	
+		echo "</tr>\n";
+	}
+		
+	
+	
+	
+	
+	
+	//wowowowowoowowowowowow
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	mysqli_free_result($result);
 	mysqli_close($conn);

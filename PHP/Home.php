@@ -57,8 +57,18 @@
 	while($row = mysqli_fetch_row($result)) {	
 		echo "<tr>";	
 		// $row is array... foreach( .. ) puts every element
-		foreach($row as $cell)		
-			echo "<td>$cell</td>";	
+		$i=1;
+		foreach($row as $cell)
+			if ($i == 2 || $i == 5 || $i == 8 || $i == 11 || $i == 14 || $i == 17 || $i == 20 || $i == 23 || $i == 26 || $i == 29){
+				//echo "<td>$cell</td>";
+				?>
+				<td><a href="Recipe.php?name=<?php echo $cell; ?>"><?php echo $cell; ?></a></td>
+				<?php
+				$i++;				
+			}else{
+				echo "<td>$cell</td>";
+				$i++;
+			}
 		echo "</tr>\n";
 	}
 
