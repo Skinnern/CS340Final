@@ -124,7 +124,7 @@
 	
 //check for unique Ingredient
 	$numberOfErrors = 0;
-	$queryUnique = "select Ingredient_name from INGREDIENT where Ingredient_name = '$IName'";
+	$queryUnique = "select recipe_name from RECIPE where recipe_name = '$Rname'";
 	//check not empty
 	if(empty($Rname) == true){
 		echo "
@@ -183,9 +183,9 @@
 		//$numberOfErrors++;
 	//}
 
-	/*
+	
 	//if we have errors, do not let the user proceed
-	if($numberOfErrors < 1) {
+	if($numberOfErrors > 0) {
 		if(mysqli_query($conn, $queryUnique)){
 			//echo "Connected.";
 			//fbsql_affected_rows
@@ -212,7 +212,7 @@
 	}
 // close connection
 mysqli_close($conn);
-*/
+
 
 ?>
 <div>
