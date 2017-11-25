@@ -135,43 +135,58 @@
 	//echo "$ingredamount1";
 	echo "<br />";
 	if($IName1 != '0' && $ingredamount1 <= 0 && $numstepsagain >= 1){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 1";
 		$numberOfErrors++;
 	}
 		if($IName2 != '0' && $ingredamount2 <= 0 && $numstepsagain >= 2){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 2";
 		$numberOfErrors++;
 	}
 		if($IName3 != '0' && $ingredamount3 <= 0 && $numstepsagain >= 3){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 3";
 		$numberOfErrors++;
 	}
 		if($IName4 != '0' && $ingredamount4 <= 0 && $numstepsagain >= 4){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 4";
 		$numberOfErrors++;
 	}
 		if($IName5 != '0' && $ingredamount5 <= 0 && $numstepsagain >= 5){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 5";
 		$numberOfErrors++;
 	}
 		if($IName6 != '0' && $ingredamount6 <= 0 && $numstepsagain >= 6){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 6";
 		$numberOfErrors++;
 	}
 		if($IName7 != '0' && $ingredamount7 <= 0 && $numstepsagain >= 7){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 7";
 		$numberOfErrors++;
 	}
 		if($IName8 != '0' && $ingredamount8 <= 0 && $numstepsagain >= 8){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 8";
 		$numberOfErrors++;
 	}
 		if($IName9 != '0' && $ingredamount9 <= 0 && $numstepsagain >= 9){
+		echo "<br />";
 		echo "Please enter an amount of ingredient 9";
 		$numberOfErrors++;
 	}
 		if($IName10 != '0' && $ingredamount10 <= 0 && $numstepsagain >= 10){
+			echo "<br />";
 		echo "Please enter an amount of ingredient 10";
+		$numberOfErrors++;
+	}
+	if(!isset($_SESSION['login_user'])){
+		echo "<br />";
+		echo "Please login to create a recipe";
 		$numberOfErrors++;
 	}
 	
@@ -185,30 +200,85 @@
 
 	
 	//if we have errors, do not let the user proceed
-	if($numberOfErrors > 0) {
+	if($numberOfErrors <= 0) {
+		
+		$userstuff = $_SESSION['login_user'];
+		//echo $userstuff;
+		$queryuserstuff = "select user_id from USER where username = '$userstuff'";
+//lookup user id to submit
+
+$resultuser = mysqli_query($conn, $queryuserstuff);
+	if (!$resultuser) {
+		die("Query to show fields from table failed");
+	}
+	
+	//number of fields
+	$fields_num = mysqli_num_fields($resultuser);
+
+
+		while($row = mysqli_fetch_row($resultuser)) {	
+					
+				// $row is array... foreach( .. ) puts every element
+				foreach($row as $cell)
+				$user_id_recieved = $cell;	
+				}
+		
+		
+//end lookup
 		if(mysqli_query($conn, $queryUnique)){
 			//echo "Connected.";
 			//fbsql_affected_rows
-			$result = mysqli_query($conn, $queryUnique);
+			$resultunique = mysqli_query($conn, $queryUnique);
 			
 			//testing rows retrieved
-			if (mysqli_num_rows($result) > 0) {
+			if (mysqli_num_rows($resultunique) > 0) {
 				echo "
-				Error: ingredient already exists in database";
+				Error: That recipe name already exists in database, please try something else";
 				mysqli_close($conn);		
 			} else{
-				// attempt insert query 
-				$query = "INSERT INTO INGREDIENT (Ingredient_name, Ingredient_cost) VALUES ('$IName', $cost)";
+				// attempt insert query
+				//NEED TO GET USER ID, THEN USE THAT TO INSERT USER_ID, RECIPE_NAME	
+				echo $user_id_recieved;
+				echo $Rname;
+				
+				$query = "INSERT INTO RECIPE (RECIPE_NAME, USER_ID) VALUES ('$Rname', '$user_id_recieved')";
 				if(mysqli_query($conn, $query)){
-					echo "New Ingredient added successfully!";
+					echo "New Recipe added successfully!";
 				} else{
-					echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
+					echo "ERROR: Could not execute $query. " . mysqli_error($conn);
 				}
 			}
 			
 		} else{
 			echo "ERROR: Could not able to execute $queryUnique. " . mysqli_error($conn);
 		}
+		
+		
+		//get recipe ID to use for our steps
+				$queryRecipe = "select Recipe_id from RECIPE where RECIPE_NAME = '$Rname'";
+
+				if(mysqli_query($conn, $queryRecipe)){
+					$resultquery = mysqli_query($conn, $queryRecipe);
+
+				$fields_num = mysqli_num_fields($resultquery);
+
+
+					while($row2 = mysqli_fetch_row($resultquery)) {	
+					
+				// $row is array... foreach( .. ) puts every element
+						foreach($row2 as $cell2)
+						$Recipe_id_recieved = $cell2;	
+					}
+				}
+				echo $Recipe_id_recieved;
+		//end get recipe ID
+		
+		//Insert steps
+		
+		
+		
+		//end insert steps
+		
 	}
 // close connection
 mysqli_close($conn);

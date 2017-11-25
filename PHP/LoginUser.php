@@ -58,6 +58,6 @@ include 'connectvarsEECS.php';
 	mysql_close($conn); // Closing Connection
 	}
 }
-echo session_id();
+//echo session_id();
 ?>
 </div>
