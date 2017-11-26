@@ -133,55 +133,108 @@
 	}
 	//echo "$IName1";
 	//echo "$ingredamount1";
+	
+	//please enter ingredienf for #1, if nothing used, please select nothing
+	if($IName1 == '0' && $numstepsagain >= 1){
+		echo "<br />";
+		echo "Please enter ingredient 1, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}
+	if($IName2 == 0 && $numstepsagain >= 2){
+		echo "<br />";
+		echo "Please enter ingredient 2, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}
+	if($IName3 == 0 && $numstepsagain >= 3){
+		echo "<br />";
+		echo "Please enter ingredient 3, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}
+	if($IName4 == 0 && $numstepsagain >= 4){
+		echo "<br />";
+		echo "Please enter ingredient 4, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}if($IName5 == 0 && $numstepsagain >= 5){
+		echo "<br />";
+		echo "Please enter ingredient 5, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}if($IName6 == 0 && $numstepsagain >= 6){
+		echo "<br />";
+		echo "Please enter ingredient 6, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}
+	if($IName7 == 0 && $numstepsagain >= 7){
+		echo "<br />";
+		echo "Please enter ingredient 7, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}
+	if($IName8 == 0 && $numstepsagain >= 8){
+		echo "<br />";
+		echo "Please enter ingredient 8, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}
+	if($IName9 == 0 && $numstepsagain >= 9){
+		echo "<br />";
+		echo "Please enter ingredient 9, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}
+	if($IName10 == 0 && $numstepsagain >= 10){
+		echo "<br />";
+		echo "Please enter ingredient 10, if no ingredient is needed, please select 'Nothing'";
+		$numberOfErrors++;
+	}
+	//end check ingredient set
+	
+	
 	echo "<br />";
 	if($IName1 != '0' && $ingredamount1 <= 0 && $numstepsagain >= 1){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 1";
+		echo "Please enter an amount of ingredient 1, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName2 != '0' && $ingredamount2 <= 0 && $numstepsagain >= 2){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 2";
+		echo "Please enter an amount of ingredient 2, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName3 != '0' && $ingredamount3 <= 0 && $numstepsagain >= 3){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 3";
+		echo "Please enter an amount of ingredient 3, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName4 != '0' && $ingredamount4 <= 0 && $numstepsagain >= 4){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 4";
+		echo "Please enter an amount of ingredient 4, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName5 != '0' && $ingredamount5 <= 0 && $numstepsagain >= 5){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 5";
+		echo "Please enter an amount of ingredient 5, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName6 != '0' && $ingredamount6 <= 0 && $numstepsagain >= 6){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 6";
+		echo "Please enter an amount of ingredient 6, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName7 != '0' && $ingredamount7 <= 0 && $numstepsagain >= 7){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 7";
+		echo "Please enter an amount of ingredient 7, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName8 != '0' && $ingredamount8 <= 0 && $numstepsagain >= 8){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 8";
+		echo "Please enter an amount of ingredient 8, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName9 != '0' && $ingredamount9 <= 0 && $numstepsagain >= 9){
 		echo "<br />";
-		echo "Please enter an amount of ingredient 9";
+		echo "Please enter an amount of ingredient 9, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 		if($IName10 != '0' && $ingredamount10 <= 0 && $numstepsagain >= 10){
 			echo "<br />";
-		echo "Please enter an amount of ingredient 10";
+		echo "Please enter an amount of ingredient 10, if option 'Nothing' is selected, add any amount you would like";
 		$numberOfErrors++;
 	}
 	if(!isset($_SESSION['login_user'])){
@@ -278,13 +331,21 @@ $resultuser = mysqli_query($conn, $queryuserstuff);
 		
 		if(isset($Recipe_id_recieved)){
 			//step 1
-			echo $IName1;
-			if ($IName1 == '0')
-			$queryaddstep1 = "insert into STEP (STEP_DESC, recipe_id) values ('$Step1', '$Recipe_id_recieved')";	
-			
-		} else {
-			
-			//get ingredient id for step
+			//echo $IName1;
+			//if ($IName1 == '0')
+			//$queryaddstep1 = "insert into STEP (STEP_DESC, recipe_id) values ('$Step1', '$Recipe_id_recieved')";	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//will this work
+		
+		//get ingredient id for step
 			 $ingredientidquery1 = "select Ingredient_id from INGREDIENT where Ingredient_name = '$IName1'";
 			 
 			 if(mysqli_query($conn, $ingredientidquery1)){
@@ -320,17 +381,16 @@ $resultuser = mysqli_query($conn, $queryuserstuff);
 					echo "here is here is re";
 					echo "<br />";
 					echo $Recipe_id_recieved;
-					$queryaddstep1 = "insert into STEP (STEP_DESC, ingredient_id, ingredient_amount, recipe_id) values ('$Step1', '$ingredientidquery1', '$ingredamount1', $Recipe_id_recieved)";
+					$queryaddstep1 = "insert into STEP (STEP_DESC, ingredient_id, ingredient_amount, recipe_id) values ('$Step1', '$id_for_recipe_step1', '$ingredamount1', $Recipe_id_recieved)";
 				//echo '$queryaddstep1';	
 					
 				}
-			 
-			 
-			 //end get ingredient step
-			 
-			 
-			 //insert step with ingredient
-			 
+		
+		
+		
+		
+		//will this work end
+			
 		} 
 		//echo $queryaddstep1;
 		if(mysqli_query($conn, $queryaddstep1)){

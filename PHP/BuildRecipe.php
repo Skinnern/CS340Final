@@ -39,7 +39,7 @@ if ($Stepnum == 0) {
 echo "please retry with a valid number of steps.";
 } else{
 ?>
-<form action="SubmitRecipe.php?numstepsagain=<?php echo $Stepnum; ?>" method="post">
+<form action="SubmitRecipefixed.php?numstepsagain=<?php echo $Stepnum; ?>" method="post">
 		<label for="Rname">Recipe Name:</label>
 		<p>
 			</p>

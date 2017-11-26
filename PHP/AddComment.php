@@ -39,7 +39,7 @@
 	$CurrUser = $_SESSION['login_user'];
 	if (isset($CurrUser)){
 	} else{
-	echo "this shit is so wonky";
+	echo "this is so wonky";
 	}
 	$queryUnique = "select user_id from USER where username = '$CurrUser' LIMIT 1";
 	//check not empty
