@@ -1,21 +1,27 @@
-<? session_start(); ?>
+﻿<? session_start(); ?>
+<!DOCTYPE html>
+<!-- new account -->
 <html>
+<? 
+    include("header.php");
+?>
+
 <style>
 <?php include 'index.css'; ?>
 </style>
 <div class="topnav">
-  <a href="Home.php">Home</a>
-  <a class="active" href="RecipesSearch.php">Recipe Search</a>
+  <a class="active" href="Home.php">Home</a>
+  <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
   <a href="AddIngredient.php">Add Ingredient</a>
   <a href="LoginPage.php">Login</a>
   <a href="logout.php">Logout</a>
-  <a href="Account.php">Account</a>
+  <a class="active" href="Account.php">Account</a>
   <a href="About.php">About</a>
 </div>
 
 <div>
-<h2>Add Comment</h2>
+<h2>Add User</h2>
 <?php
 // change the value of $dbuser and $dbpass to your username and password
 	include 'connectvarsEECS.php'; 
@@ -29,48 +35,53 @@
 	
 	
 // Escape user inputs for security
-	$commenttext = mysqli_real_escape_string($conn, $_POST['commenttext']);
+	$username = mysqli_real_escape_string($conn, $_POST['username']);
+	$email = mysqli_real_escape_string($conn, $_POST['email']);
+	$password = mysqli_real_escape_string($conn, $_POST['password']);
 	
 	//end age	
 	
-//check for unique Ingredient
+//check for unique username
 	$numberOfErrors = 0;
-	$recipe_from = '13';
-	$CurrUser = $_SESSION['login_user'];
-	if (isset($CurrUser)){
-	} else{
-	echo "this is so wonky";
-	}
-	$queryUnique = "select user_id from USER where username = '$CurrUser' LIMIT 1";
+	$queryUnique = "select username from Users where username = '$username'";
 	//check not empty
-	 if(empty($CurrUser) == true){
+	if(empty($username) == true){
 		echo "
-		please login before commenting\n";
-		$numberOfErrors++;
-	}if(empty($commenttext) == true){
-		echo "
-		please enter a comment before submitting\n";
+		please enter a username\n";
 		$numberOfErrors++;
 	}
-	$result = mysqli_query($conn, $queryUnique);
-	while($row = mysqli_fetch_row($result)) {		
-		// $row is array... foreach( .. ) puts every element
-		foreach($row as $cell)		
-			$id = $cell;	
+	 if(empty($email) == true){
+		echo "
+		please enter an email\n";
+		$numberOfErrors++;
 	}
+	 if(empty($password) == true){
+		echo "
+		please enter a password\n";
+		$numberOfErrors++;
+	}
+	
+	//if we have errors, do not let the user proceed
 	if($numberOfErrors < 1) {
 		if(mysqli_query($conn, $queryUnique)){
 			//echo "Connected.";
 			//fbsql_affected_rows
 			$result = mysqli_query($conn, $queryUnique);
+			
+			//testing rows retrieved
+			if (mysqli_num_rows($result) > 0) {
+				echo "
+				Error: username already exists in database, please retry with a different user";
+				mysqli_close($conn);		
+			} else{
 				// attempt insert query 
-				$query = "INSERT INTO COMMENT (user_id, recipe_id, Comment) VALUES ('$id', $recipe_from, '$commenttext')";
+				$query = "INSERT INTO USER (username, email, password) VALUES ('$username', '$email', '$password')";
 				if(mysqli_query($conn, $query)){
-					echo "New Comment added successfully!";
+					echo "New User added successfully!";
 				} else{
 					echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
 				}
-			
+			}
 			
 		} else{
 			echo "ERROR: Could not able to execute $queryUnique. " . mysqli_error($conn);

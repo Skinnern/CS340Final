@@ -1,4 +1,5 @@
 <?php
+session_start();
   // Define database connection constants
   define('DB_HOST', 'classmysql.engr.oregonstate.edu');
   define('DB_USER', 'cs340_skinnern');
