@@ -1,3 +1,9 @@
+<?php session_start();
+	$nick = $_SESSION['login_user'];
+	//include('session.php');
+	
+ ?>
+
 <!DOCTYPE html>
 <!-- Recipe-->
 <html>
@@ -11,8 +17,14 @@
 <div class="topnav">
   <a class="active" href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
-  <a href="Account.php">Account</a>
+  <a href="AddRecipe.php">Add Recipe</a>
+  <a href="AddIngredient.php">Add Ingredient</a>  
   <a href="About.php">About</a>
+    
+  <?php if(!isset($_SESSION['login_user'])){ ?>
+  <a href="LoginPage.php">Login</a>
+  <a href="Account.php">Create Account</a>
+  <?php } ?>
 </div>
 <!-- end Style-->
 <div>
@@ -40,14 +52,23 @@
 	echo "<th><b>Recipe Name</b></th>";
 	echo "<th><b>Total Cost</b></th>";
 	echo "</tr>\n";
-	
+
 	//table content
 	while($row = mysqli_fetch_row($result)) {	
 		echo "<tr>";	
 		// $row is array... foreach( .. ) puts every element
-		// of $row to $cell variable	
-		foreach($row as $cell)		
-			echo "<td>$cell</td>";	
+		$i=1;
+		foreach($row as $cell)
+			if ($i == 2 || $i == 5 || $i == 8 || $i == 11 || $i == 14 || $i == 17 || $i == 20 || $i == 23 || $i == 26 || $i == 29){
+				//echo "<td>$cell</td>";
+				?>
+				<td><a href="Recipe.php?name=<?php echo $cell; ?>"><?php echo $cell; ?></a></td>
+				<?php
+				$i++;				
+			}else{
+				echo "<td>$cell</td>";
+				$i++;
+			}
 		echo "</tr>\n";
 	}
 
@@ -56,6 +77,7 @@
 ?>
 </div>
 <? 
+	
     include("footer.php");
 ?>
 </html>

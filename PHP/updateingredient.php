@@ -1,4 +1,4 @@
-﻿<? session_start(); ?>
+<? session_start(); ?>
 <!DOCTYPE html>
 <!-- new account -->
 <html>
@@ -10,18 +10,18 @@
 <?php include 'index.css'; ?>
 </style>
 <div class="topnav">
-  <a class="active" href="Home.php">Home</a>
+  <a href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
-  <a href="AddIngredient.php">Add Ingredient</a>
+  <a class="active" href="AddIngredient.php">Add Ingredient</a>
   <a href="LoginPage.php">Login</a>
   <a href="logout.php">Logout</a>
-  <a class="active" href="Account.php">Account</a>
+  <a href="Account.php">Account</a>
   <a href="About.php">About</a>
 </div>
 
 <div>
-<h2>Add User</h2>
+<h2>Add Ingredient</h2>
 <?php
 // change the value of $dbuser and $dbpass to your username and password
 	include 'connectvarsEECS.php'; 
@@ -35,31 +35,27 @@
 	
 	
 // Escape user inputs for security
-	$username = mysqli_real_escape_string($conn, $_POST['username']);
-	$email = mysqli_real_escape_string($conn, $_POST['email']);
-	$password = mysqli_real_escape_string($conn, $_POST['password']);
+	$INameU = mysqli_real_escape_string($conn, $_POST['INameU']);
+	$newcost = mysqli_real_escape_string($conn, $_POST['newcost']);
 	
 	//end age	
 	
-//check for unique username
+//check for unique Ingredient
 	$numberOfErrors = 0;
-	$queryUnique = "select username from Users where username = '$username'";
+	$queryUnique = "select Ingredient_name from INGREDIENT where Ingredient_name = '$INameU'";
 	//check not empty
-	if(empty($username) == true){
+	echo $INameU;
+	if(empty($INameU) == true){
 		echo "
-		please enter a username\n";
+		please enter a Name for the item\n";
 		$numberOfErrors++;
 	}
-	 if(empty($email) == true){
+	 if(empty($newcost) == true){
 		echo "
-		please enter an email\n";
+		please enter a cost per ounce\n";
 		$numberOfErrors++;
 	}
-	 if(empty($password) == true){
-		echo "
-		please enter a password\n";
-		$numberOfErrors++;
-	}
+
 	
 	//if we have errors, do not let the user proceed
 	if($numberOfErrors < 1) {
@@ -69,15 +65,15 @@
 			$result = mysqli_query($conn, $queryUnique);
 			
 			//testing rows retrieved
-			if (mysqli_num_rows($result) > 0) {
+			if (mysqli_num_rows($result) < 0) {
 				echo "
-				Error: username already exists in database, please retry with a different user";
+				Error: ingredient does not exist in database";
 				mysqli_close($conn);		
 			} else{
 				// attempt insert query 
-				$query = "INSERT INTO USER (username, email, password) VALUES ('$username', '$email', '$password')";
+				$query = "update INGREDIENT set Ingredient_cost = '$newcost' where Ingredient_name like '$INameU'";
 				if(mysqli_query($conn, $query)){
-					echo "New User added successfully!";
+					echo " was updated successfully!";
 				} else{
 					echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
 				}

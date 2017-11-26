@@ -1,3 +1,4 @@
+<? session_start(); ?>
 <!DOCTYPE html>
 <!-- Recipe -->
 <html>
@@ -9,8 +10,12 @@
 <?php include 'index.css'; ?>
 </style>
 <div class="topnav">
-  <a class="active" href="Home.php">Home</a>
-  <a href="RecipesSearch.php">Recipe Search</a>
+  <a href="Home.php">Home</a>
+  <a class="active" href="RecipesSearch.php">Recipe Search</a>
+  <a href="AddRecipe.php">Add Recipe</a>
+  <a href="AddIngredient.php">Add Ingredient</a>
+  <a href="LoginPage.php">Login</a>
+  <a href="logout.php">Logout</a>
   <a href="Account.php">Account</a>
   <a href="About.php">About</a>
 </div>
@@ -23,7 +28,8 @@
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
-	$query = "select S.STEP_DESC, I.INGREDIENT_NAME, S.INGREDIENT_AMOUNT from RECIPE R, STEP S, INGREDIENT I where R.RECIPE_ID=S.RECIPE_ID and S.INGREDIENT_ID = I.INGREDIENT_ID and R.RECIPE_NAME like '%burger%';";
+	$searchitem = $_GET["name"];
+	$query = "select S.STEP_DESC, I.INGREDIENT_NAME, S.INGREDIENT_AMOUNT from RECIPE R, STEP S, INGREDIENT I where R.RECIPE_ID=S.RECIPE_ID and S.INGREDIENT_ID = I.INGREDIENT_ID and R.RECIPE_NAME like '$searchitem';";
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
@@ -50,7 +56,7 @@
 	if (!$conn) {
 		die('Could not connect: ' . mysql_error());
 	}
-	$query = "Select U.USERNAME, C.COMMENT from COMMENT C, RECIPE R, USER U where C.RECIPE_ID = R.RECIPE_ID and C.USER_ID = U.USER_ID and R.RECIPE_NAME like '%burger%';";
+	$query = "Select U.USERNAME, C.COMMENT from COMMENT C, RECIPE R, USER U where C.RECIPE_ID = R.RECIPE_ID and C.USER_ID = U.USER_ID and R.RECIPE_NAME like '$searchitem';";
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
@@ -75,12 +81,27 @@
 			echo "<td>$cell</td>";	
 		echo "</tr>\n";
 	}
-	
 
 	mysqli_free_result($result);
 	mysqli_close($conn);
 ?>
 </div>
+<div>
+	<?php if(isset($_SESSION['login_user'])){ ?>
+
+		<form action="AddComment.php" method="post">
+			<label for="commenttext">Leave a Comment</label>
+			<p>
+			</p>
+			<input type="text" id="commenttext" name="commenttext" placeholder="Type in comment here...">
+			<input type="submit" value="Submit">
+		</form>
+	<?php }?>
+
+</div>
+
+
+
 <? 
     include("footer.php");
 ?>
