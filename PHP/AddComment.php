@@ -17,6 +17,7 @@
 </div>
 
 <div>
+
 <h2>Add Comment</h2>
 <?php
 // change the value of $dbuser and $dbpass to your username and password
@@ -37,7 +38,7 @@
 	
 //check for unique Ingredient
 	$numberOfErrors = 0;
-	$recipe_from = '13';
+	$recipe_from = $_GET['nickget'];
 	$CurrUser = $_SESSION['login_user'];
 	if (isset($CurrUser)){
 	} else{

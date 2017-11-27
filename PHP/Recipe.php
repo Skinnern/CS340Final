@@ -83,6 +83,25 @@
 			echo "<td>$cell</td>";	
 		echo "</tr>\n";
 	}
+	//get recipe id to pass as get
+	$queryfortheget = "select recipe_id from RECIPE where recipe_name = '$searchitem'";
+
+$resultget = mysqli_query($conn, $queryfortheget);
+		if (!$resultget) {
+			die("Query to show fields from table failed");
+		}
+
+
+
+
+		while($rowget = mysqli_fetch_row($resultget)) {	
+					
+				// $row is array... foreach( .. ) puts every element
+				foreach($rowget as $cellget)				
+				$nickgetresult = $cellget;	
+				}
+	
+	//end get request
 
 	mysqli_free_result($result);
 	mysqli_close($conn);
@@ -91,7 +110,7 @@
 <div>
 	<?php if(isset($_SESSION['login_user'])){ ?>
 
-		<form action="AddComment.php" method="post">
+		<form action="AddComment.php?nickget=<?php echo $nickgetresult; ?>" method="post">
 			<label for="commenttext">Leave a Comment</label>
 			<p>
 			</p>
