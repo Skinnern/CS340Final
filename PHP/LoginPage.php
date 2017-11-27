@@ -17,7 +17,7 @@
   <a href="About.php">About</a>
     
   <?php if(!isset($_SESSION['login_user'])){ ?>
-  <a class="active" href="LoginPage.php">Login</a>
+  <a href="LoginPage.php">Login</a>
   <a href="Account.php">Create Account</a>
   <?php } ?>
 </div>
