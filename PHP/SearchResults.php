@@ -75,7 +75,7 @@
 	echo "<td><b>Ingredient</b></td>";
 	echo "<td><b>Recipe</b></td>";
 	}	
-	if ($Locationof == '3'){
+	if ($Locationof == '4'){
 	echo "<td><b>Cost</b></td>";
 	echo "<td><b>Recipe</b></td>";
 	}	
