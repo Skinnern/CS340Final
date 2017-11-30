@@ -1,4 +1,4 @@
-<? session_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <!-- Recipe-->
 <html>
@@ -11,13 +11,17 @@
 </style>
 <div class="topnav">
   <a href="Home.php">Home</a>
-  <a class="active" href="RecipesSearch.php">Recipe Search</a>
+  <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
-  <a href="AddIngredient.php">Add Ingredient</a>
-  <a href="LoginPage.php">Login</a>
-  <a href="logout.php">Logout</a>
-  <a href="Account.php">Account</a>
+  <a href="AddIngredient.php">Add Ingredient</a>  
   <a href="About.php">About</a>
+    
+  <?php if(!isset($_SESSION['login_user'])){ ?>
+  <a href="LoginPage.php">Login</a>
+  <a href="Account.php">Create Account</a>
+  <?php } else{?>
+  <a href="logout2.php">Logout</a>
+  <?php } ?>
 </div>
 <!-- end Style-->
 <?php
@@ -37,10 +41,13 @@
 	$query = "select Recipe_name from RECIPE where Recipe_name like '%$Searchitem%' LIMIT 0,20";	
 	}
 	if ($Locationof == '2'){
-	$query = "select Username from USER where Username like '%$Searchitem%' LIMIT 0,20";
+	$query = "select U.USERNAME, R.RECIPE_NAME from USER U, RECIPE R where R.USER_ID = U.USER_ID and U.USERNAME like '%$Searchitem%' LIMIT 0,20";
 	}
 	if ($Locationof == '3'){
 	$query = "select I.Ingredient_name, R.RECIPE_NAME from INGREDIENT I, RECIPE R, STEP S where I.INGREDIENT_ID = S.INGREDIENT_ID and S.RECIPE_ID = R.RECIPE_ID and I.INGREDIENT_NAME LIKE '%$Searchitem%' LIMIT 0,20";	
+	}
+	if ($Locationof == '4'){
+	$query = "select RECIPE_COST, RECIPE_NAME from RECIPE where RECIPE_COST <= $Searchitem LIMIT 0,20";	
 	}
 
 	
@@ -62,9 +69,14 @@
 	}	
 	if ($Locationof == '2'){
 	echo "<td><b>User</b></td>";
+	echo "<td><b>Recipe</b></td>";
 	}	
 	if ($Locationof == '3'){
 	echo "<td><b>Ingredient</b></td>";
+	echo "<td><b>Recipe</b></td>";
+	}	
+	if ($Locationof == '4'){
+	echo "<td><b>Cost</b></td>";
 	echo "<td><b>Recipe</b></td>";
 	}	
 	//echo "<td><b>Recipe Name</b></td>";
@@ -99,16 +111,31 @@
 	}
 	//end
 	}	
+	//end if recipe
 	if ($Locationof == '2'){
 	while($row = mysqli_fetch_row($result)) {	
 		echo "<tr>";	
 		// $row is array... foreach( .. ) puts every element
 		// of $row to $cell variable	
-		foreach($row as $cell)		
-			echo "<td>$cell</td>";	
+		$i=1;
+		foreach($row as $cell)
+			if($i == 2 || $i == 4|| $i == 6|| $i == 8|| $i == 10|| $i == 12|| $i == 14|| $i == 16|| $i == 18|| $i == 20|| $i == 22| $i == 24|| $i == 26|| $i == 28|| $i == 30 || $i == 32|| $i == 34|| $i == 36|| $i == 38|| $i == 40|| $i == 42){
+				//echo "<td>$cell</td>";
+				?>
+				<td><a href="Recipe.php?name=<?php echo $cell; ?>"><?php echo $cell; ?></a></td>
+				<?php
+				$i++;				
+			}else{
+				echo "<td>$cell</td>";
+				$i++;
+			}
 		echo "</tr>\n";
 	}
-	}	
+		//end massive if
+			//echo "<td>$cell</td>";	
+		echo "</tr>\n";
+	}
+	//if ingred
 	if ($Locationof == '3'){
 	while($row = mysqli_fetch_row($result)) {	
 		echo "<tr>";	
@@ -133,7 +160,29 @@
 		echo "</tr>\n";
 	}
 		
-	
+	if ($Locationof == '4'){
+	while($row = mysqli_fetch_row($result)) {	
+		echo "<tr>";	
+		// $row is array... foreach( .. ) puts every element
+		// of $row to $cell variable	
+		$i=1;
+		foreach($row as $cell)
+			if($i == 2 || $i == 4|| $i == 6|| $i == 8|| $i == 10|| $i == 12|| $i == 14|| $i == 16|| $i == 18|| $i == 20|| $i == 22| $i == 24|| $i == 26|| $i == 28|| $i == 30 || $i == 32|| $i == 34|| $i == 36|| $i == 38|| $i == 40|| $i == 42){
+				//echo "<td>$cell</td>";
+				?>
+				<td><a href="Recipe.php?name=<?php echo $cell; ?>"><?php echo $cell; ?></a></td>
+				<?php
+				$i++;				
+			}else{
+				echo "<td>$cell</td>";
+				$i++;
+			}
+		echo "</tr>\n";
+	}
+		//end massive if
+			//echo "<td>$cell</td>";	
+		echo "</tr>\n";
+	}
 	
 	
 	

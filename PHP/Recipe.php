@@ -11,13 +11,17 @@
 </style>
 <div class="topnav">
   <a href="Home.php">Home</a>
-  <a class="active" href="RecipesSearch.php">Recipe Search</a>
+  <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
-  <a href="AddIngredient.php">Add Ingredient</a>
-  <a href="LoginPage.php">Login</a>
-  <a href="logout.php">Logout</a>
-  <a href="Account.php">Account</a>
+  <a href="AddIngredient.php">Add Ingredient</a>  
   <a href="About.php">About</a>
+    
+  <?php if(!isset($_SESSION['login_user'])){ ?>
+  <a href="LoginPage.php">Login</a>
+  <a href="Account.php">Create Account</a>
+  <?php } else{?>
+  <a href="logout2.php">Logout</a>
+  <?php } ?>
 </div>
 <!-- end Style-->
 <div>
@@ -30,6 +34,26 @@
 	}
 	$searchitem = $_GET["name"];
 	$query = "select S.STEP_DESC, I.INGREDIENT_NAME, S.INGREDIENT_AMOUNT from RECIPE R, STEP S, INGREDIENT I where R.RECIPE_ID=S.RECIPE_ID and S.INGREDIENT_ID = I.INGREDIENT_ID and R.RECIPE_NAME like '$searchitem';";
+	$querycost = "select RECIPE_COST from RECIPE WHERE RECIPE_NAME LIKE '$searchitem';";
+	
+	//cost query
+	$resultcost = mysqli_query($conn, $querycost);
+	if (!$resultcost) {
+		die("Query to show fields from table failed");
+	} else{
+		while($rowcost = mysqli_fetch_row($resultcost)) {	
+		echo "";	
+		// $row is array... foreach( .. ) puts every element
+		// of $row to $cell variable	
+		foreach($rowcost as $cellcost)		
+			echo "<h2>This Recipe's Total Cost Is Roughly: $cellcost Dollars</h2>";	
+		echo "\n";
+	}
+		
+		
+	}
+	
+	//end cost query
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");
@@ -81,6 +105,25 @@
 			echo "<td>$cell</td>";	
 		echo "</tr>\n";
 	}
+	//get recipe id to pass as get
+	$queryfortheget = "select recipe_id from RECIPE where recipe_name = '$searchitem'";
+
+$resultget = mysqli_query($conn, $queryfortheget);
+		if (!$resultget) {
+			die("Query to show fields from table failed");
+		}
+
+
+
+
+		while($rowget = mysqli_fetch_row($resultget)) {	
+					
+				// $row is array... foreach( .. ) puts every element
+				foreach($rowget as $cellget)				
+				$nickgetresult = $cellget;	
+				}
+	
+	//end get request
 
 	mysqli_free_result($result);
 	mysqli_close($conn);
@@ -89,7 +132,7 @@
 <div>
 	<?php if(isset($_SESSION['login_user'])){ ?>
 
-		<form action="AddComment.php" method="post">
+		<form action="AddComment.php?nickget=<?php echo $nickgetresult; ?>" method="post">
 			<label for="commenttext">Leave a Comment</label>
 			<p>
 			</p>

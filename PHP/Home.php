@@ -1,7 +1,6 @@
 <?php session_start();
 	$nick = $_SESSION['login_user'];
 	//include('session.php');
-	
  ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,7 @@
 <?php include 'index.css'; ?>
 </style>
 <div class="topnav">
-  <a class="active" href="Home.php">Home</a>
+  <a href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
   <a href="AddIngredient.php">Add Ingredient</a>  
@@ -24,6 +23,8 @@
   <?php if(!isset($_SESSION['login_user'])){ ?>
   <a href="LoginPage.php">Login</a>
   <a href="Account.php">Create Account</a>
+  <?php } else{?>
+  <a href="logout2.php">Logout</a>
   <?php } ?>
 </div>
 <!-- end Style-->

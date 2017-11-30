@@ -1,20 +1,25 @@
-<? session_start(); ?>
+<?php session_start(); ?>
 <html>
 <style>
 <?php include 'index.css'; ?>
 </style>
 <div class="topnav">
   <a href="Home.php">Home</a>
-  <a class="active" href="RecipesSearch.php">Recipe Search</a>
+  <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
-  <a href="AddIngredient.php">Add Ingredient</a>
-  <a href="LoginPage.php">Login</a>
-  <a href="logout.php">Logout</a>
-  <a href="Account.php">Account</a>
+  <a href="AddIngredient.php">Add Ingredient</a>  
   <a href="About.php">About</a>
+    
+  <?php if(!isset($_SESSION['login_user'])){ ?>
+  <a href="LoginPage.php">Login</a>
+  <a href="Account.php">Create Account</a>
+  <?php } else{?>
+  <a href="logout2.php">Logout</a>
+  <?php } ?>
 </div>
 
 <div>
+
 <h2>Add Comment</h2>
 <?php
 // change the value of $dbuser and $dbpass to your username and password
@@ -35,7 +40,7 @@
 	
 //check for unique Ingredient
 	$numberOfErrors = 0;
-	$recipe_from = '13';
+	$recipe_from = $_GET['nickget'];
 	$CurrUser = $_SESSION['login_user'];
 	if (isset($CurrUser)){
 	} else{

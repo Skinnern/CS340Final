@@ -1,4 +1,4 @@
-<? session_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <!-- new account -->
 <html>
@@ -13,11 +13,15 @@
   <a href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
-  <a class="active" href="AddIngredient.php">Add Ingredient</a>
-  <a href="LoginPage.php">Login</a>
-  <a href="logout.php">Logout</a>
-  <a href="Account.php">Account</a>
+  <a href="AddIngredient.php">Add Ingredient</a>  
   <a href="About.php">About</a>
+    
+  <?php if(!isset($_SESSION['login_user'])){ ?>
+  <a href="LoginPage.php">Login</a>
+  <a href="Account.php">Create Account</a>
+  <?php } else{?>
+  <a href="logout2.php">Logout</a>
+  <?php } ?>
 </div>
 
 <div>

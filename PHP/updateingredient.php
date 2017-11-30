@@ -1,4 +1,4 @@
-<? session_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <!-- new account -->
 <html>
@@ -13,11 +13,15 @@
   <a href="Home.php">Home</a>
   <a href="RecipesSearch.php">Recipe Search</a>
   <a href="AddRecipe.php">Add Recipe</a>
-  <a class="active" href="AddIngredient.php">Add Ingredient</a>
-  <a href="LoginPage.php">Login</a>
-  <a href="logout.php">Logout</a>
-  <a href="Account.php">Account</a>
+  <a href="AddIngredient.php">Add Ingredient</a>  
   <a href="About.php">About</a>
+    
+  <?php if(!isset($_SESSION['login_user'])){ ?>
+  <a href="LoginPage.php">Login</a>
+  <a href="Account.php">Create Account</a>
+  <?php } else{?>
+  <a href="logout2.php">Logout</a>
+  <?php } ?>
 </div>
 
 <div>
@@ -74,6 +78,12 @@
 				$query = "update INGREDIENT set Ingredient_cost = '$newcost' where Ingredient_name like '$INameU'";
 				if(mysqli_query($conn, $query)){
 					echo " was updated successfully!";
+					$queryupdate = "call Update_Recipe_Costs();";
+					if(mysqli_query($conn, $query)){
+					echo "all costs updated successfully!";
+				} else{
+					echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
+				}
 				} else{
 					echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
 				}
@@ -83,6 +93,7 @@
 			echo "ERROR: Could not able to execute $queryUnique. " . mysqli_error($conn);
 		}
 	}
+	
 // close connection
 mysqli_close($conn);
 ?>
