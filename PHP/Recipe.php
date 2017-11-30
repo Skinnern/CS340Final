@@ -34,6 +34,26 @@
 	}
 	$searchitem = $_GET["name"];
 	$query = "select S.STEP_DESC, I.INGREDIENT_NAME, S.INGREDIENT_AMOUNT from RECIPE R, STEP S, INGREDIENT I where R.RECIPE_ID=S.RECIPE_ID and S.INGREDIENT_ID = I.INGREDIENT_ID and R.RECIPE_NAME like '$searchitem';";
+	$querycost = "select RECIPE_COST from RECIPE WHERE RECIPE_NAME LIKE '$searchitem';";
+	
+	//cost query
+	$resultcost = mysqli_query($conn, $querycost);
+	if (!$resultcost) {
+		die("Query to show fields from table failed");
+	} else{
+		while($rowcost = mysqli_fetch_row($resultcost)) {	
+		echo "";	
+		// $row is array... foreach( .. ) puts every element
+		// of $row to $cell variable	
+		foreach($rowcost as $cellcost)		
+			echo "<h2>This Recipe's Total Cost Is Roughly: $cellcost Dollars</h2>";	
+		echo "\n";
+	}
+		
+		
+	}
+	
+	//end cost query
 	$result = mysqli_query($conn, $query);
 	if (!$result) {
 		die("Query to show fields from table failed");

@@ -33,7 +33,7 @@
         <input type="text" name="IName" id="IName"  placeholder="Ingredient Name...">
     </p>
 	<p>
-        <label for="cost">Cost:</label>
+        <label for="cost">Ingredient Cost (in ounces):</label>
 		<p>
 			</p>
         <input type="text" name="cost" id="cost"  placeholder="Ingredient Cost...">
@@ -80,7 +80,7 @@ include 'connectvarsEECS.php';
 			</select>
     </p>
 	<p>
-        <label for="newcost"> New Cost:</label>
+        <label for="newcost"> New Cost (In ounces):</label>
 		<p>
 			</p>
         <input type="text" name="newcost" id="newcost"  placeholder="Ingredient Cost...">
