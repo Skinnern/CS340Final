@@ -19,6 +19,8 @@
   <?php if(!isset($_SESSION['login_user'])){ ?>
   <a href="LoginPage.php">Login</a>
   <a href="Account.php">Create Account</a>
+  <?php } else{?>
+  <a href="logout2.php">Logout</a>
   <?php } ?>
 </div>
 <!-- end Style-->
