@@ -79,7 +79,8 @@
 				mysqli_close($conn);		
 			} else{
 				// attempt insert query 
-				$query = "INSERT INTO USER (username, email, password) VALUES ('$username', '$email', '$password')";
+				$passwordenc=md5($password);
+				$query = "INSERT INTO USER (username, email, password) VALUES ('$username', '$email', '$passwordenc')";
 				if(mysqli_query($conn, $query)){
 					echo "New User added successfully!";
 				} else{
