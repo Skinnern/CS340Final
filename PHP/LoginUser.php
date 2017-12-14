@@ -47,8 +47,8 @@ include 'connectvarsEECS.php';
 	}
 	//echo "$username";
 	//echo "$password";
-
-	$query = "select * from USER where PASSWORD='$password' AND USERNAME='$username'";
+	$passwordenc=md5($password);
+	$query = "select * from USER where PASSWORD='$passwordenc' AND USERNAME='$username'";
 	$result = mysqli_query($conn, $query);
 	$row_count = $result->num_rows;
 //set session if logged in
